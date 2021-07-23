@@ -1,0 +1,67 @@
+// Script for dumping data into tables
+// Tables created by Hibernate and JPA by running application 
+// and setting in .properties file spring.jpa.hibernate.ddl-auto=create-drop
+
+
+INSERT INTO user VALUES 
+	(1,'maris@inbox.lv', '$2a$10$qDaGJcqWrEsxzUqMCULGJ.eZAL3SIY.yBQKnQGMsuHuj.iGE94dRy','maris'),
+	(2,'adina@inbox.lv', '$2a$10$qDaGJcqWrEsxzUqMCULGJ.eZAL3SIY.yBQKnQGMsuHuj.iGE94dRy','adina'),
+	(3,'emma@inbox.lv', '$2a$10$qDaGJcqWrEsxzUqMCULGJ.eZAL3SIY.yBQKnQGMsuHuj.iGE94dRy','emma');
+
+
+INSERT INTO role VALUES 
+(1,'ROLE_APPLICANT'),(2,'ROLE_MANAGER'),(3,'ROLE_ADMIN');
+
+INSERT INTO users_roles (user_id, role_id)
+VALUES 
+(1, 1),
+(1, 3),
+(2, 1),
+(2, 2),
+(3, 1);
+
+INSERT INTO favourite (image_id, artist_id, m_image_url)
+VALUES 
+(NULL, 2, NULL),
+(3, NULL, NULL),
+(NULL, NULL, 'https://images.metmuseum.org/CRDImages/ep/original/DT1567.jpg'),
+(NULL, 3, NULL),
+(4, NULL, NULL);
+
+
+// Images added by Controller
+Image im = new Image();
+		im.setCategory(CategoryType.PAINTING);
+		User u=userRepo.findByUserName("adina");
+		im.setCreator(u);
+		im.setFileUrl("car.jpg");
+		im.setForSale(true);
+		im.setName("love for speed");
+		im.setSold(false);
+		imageService.createOrUpdateImage(im);
+		u.addCreatedImage(im);
+		userRepo.save(u);
+		
+		
+		Image im2 = new Image();
+		im2.setCategory(CategoryType.PAINTING);
+		User u2=userRepo.findByUserName("emma");
+		im2.setCreator(u);
+		im2.setFileUrl("child.jpg");
+		im2.setForSale(true);
+		im2.setName("hard times");
+		im2.setSold(false);
+		imageService.createOrUpdateImage(im2);
+		u2.addCreatedImage(im2);
+		userRepo.save(u2);
+
+
+
+
+INSERT INTO favourite (image_id, artist_id, m_image_url, user_id)
+VALUES 
+(NULL, 2, NULL, 1),
+(1, NULL, NULL, 1),
+(NULL, NULL, 'https://images.metmuseum.org/CRDImages/ep/original/DT1567.jpg',2),
+(NULL, 3, NULL, 2),
+(2, NULL, NULL,3);
