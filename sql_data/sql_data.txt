@@ -1,3 +1,7 @@
+// SQL text files in this folder are exported from MySql and reflects the current DB state
+// Current file describes the initial creation of DB and data dumping
+
+
 // Script for dumping data into tables
 // Tables created by Hibernate and JPA by running application 
 // and setting in .properties file spring.jpa.hibernate.ddl-auto=create-drop
