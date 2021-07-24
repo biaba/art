@@ -35,8 +35,6 @@ public class SecConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/jsp").permitAll()
 				.antMatchers("/advancedSearch").permitAll()
 				.antMatchers("/user/**").permitAll()
-				.antMatchers("/add/image/favourite").permitAll()
-				.antMatchers("/remove/image/favourite").permitAll()
 				.antMatchers("/check/**").permitAll()
 				.antMatchers( "/favicon.ico").permitAll()
 				.antMatchers("/search/**").permitAll()
